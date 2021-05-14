@@ -41,9 +41,25 @@ class Airplane {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- class Person {
-    
+class Person {
+  constructor(name, age) {
+      this.name = name,
+      this.age = age,
+      this.stomach = []
   }
+  eat(item){
+      if (this.stomach.length < 10){
+        return this.stomach.push(item)
+    }
+  }
+  poop(){
+    return this.stomach = [];
+  }
+  toString(name, age){
+    return `${this.name}, ${this.age}`
+  }
+}
+
   
   /*
     TASK 2
@@ -56,11 +72,26 @@ class Airplane {
           + Should cause the `odometer` to go up.
           + Should cause the the `tank` to go down taking `milesPerGallon` into account.
       - A car which runs out of `fuel` while driving can't drive any more distance:
-          + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
+          + The `drive` method should return a string `I ran out of fuel at ${this.odometer} miles!` x being `odometer`.
   */
   
  class Car {
-    
+    constructor(model, milesPerGallon){
+      this.model = model,
+      this.milesPerGallon = milesPerGallon,
+      this.tank = 0
+      this.odometer = 0
+    }
+    fill(gallons){
+      return this.tank = this.tank + gallons
+    }
+    drive(distance){
+     if (this.tank > distance / this.milesPerGallon){
+      return this.odometer = this.odometer + distance, this.tank = this.tank - distance / this.milesPerGallon
+    }else if(this.tank < distance / this.milesPerGallon){
+      return `I ran out of fuel at ${this.odometer = this.tank * this.milesPerGallon} miles!`
+      }
+    }
   }
   
   /*
@@ -76,7 +107,14 @@ class Airplane {
           + {name} and {location} of course come from the instance's own properties.
   */
  class Lambdasian {
-    
+    constructor({name, age, location}){
+      this.name = name
+      this.age = age
+      this.location = location
+    }
+    speak(){
+      return `Hello my name is ${this.name}, I am from ${this.location}`
+    }
   }
   
   /*
@@ -93,9 +131,25 @@ class Airplane {
           + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
           + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
   */
- class Instructor {
-
- }
+ class Instructor extends Lambdasian {
+  constructor({name, age, location, specialty, favLanguage, catchPhrase}){
+    super(Lambdasian)
+    this.name = name
+    this.age = age
+    this.location = location
+    this.catchPhrase = catchPhrase
+    this.favLanguage = favLanguage
+    this.specialty = specialty
+  }
+  demo(subject){
+    this.subject = subject
+    return `Today we are learning about ${subject}`
+  }  
+  grade(student, subject){
+    this.student = student
+    return `${student.name} receives a perfect score on ${subject}`
+  }
+}
   /*
     TASK 5
       - Write a Student class extending Lambdasian.
@@ -111,10 +165,28 @@ class Airplane {
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
-     
+ class Student extends Lambdasian {
+   constructor({name, age, location, previousBackground, className, favSubjects}){
+    super(Lambdasian)
+    this.name = name
+    this.age = age
+    this.location = location
+    this.previousBackground =  previousBackground
+    this.className = className
+    this.favSubjects = favSubjects
+   }
+   listSubjects(){
+    return `${favSubjects}`
+   }
+   PRAssignment(subject, name){
+    this.subject = subject
+    return `${name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(student, subject){
+    this.student = student
+    return `${student.name} has begun sprint challenge on ${subject}`
+  }
  }
-  
   /*
     TASK 6
       - Write a ProjectManager class extending Instructor.
@@ -128,8 +200,25 @@ class Airplane {
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
+ class ProjectManager extends Instructor{
+    constructor({name, age, location, specialty, favLanguage, catchPhrase, gradClassName, favInstructor}){
+    super(Instructor)
+    this.name = name
+    this.age = age
+    this.location = location
+    this.catchPhrase = catchPhrase
+    this.favLanguage = favLanguage
+    this.specialty = specialty
+    this.gradClassName = gradClassName
+    this.favInstructor = favInstructor
+    }
+    standUp(channel){
+      this.channel = channel
+      return `${this.name} announces to ${channel}, @channel standy times!`
+    }
+    debugsCode( name, student, subject){
+      return `${name} debugs ${student.name}'s code on ${subject}`
+    }
  }
   /*
     STRETCH PROBLEM (no tests!)
